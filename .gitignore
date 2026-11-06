@@ -3,6 +3,7 @@
 .gradle
 .idea
 *.iml
+*.keystore
 local.properties
 app/build
 build

@@ -14,9 +14,23 @@ android {
         versionName = "1.0.0"
     }
 
+    signingConfigs {
+        create("release") {
+            val ksFile = rootProject.file("theabmmohi.keystore")
+            val ksPass = System.getenv("KEYSTORE_PASS")
+            if (ksFile.exists() && ksPass != null) {
+                storeFile = ksFile
+                storePassword = ksPass
+                keyAlias = "dex"
+                keyPassword = ksPass
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 
